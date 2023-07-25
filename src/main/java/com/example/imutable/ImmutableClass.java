@@ -1,39 +1,30 @@
 package com.example.imutable;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public record ImmutableClass(int id, Student student, List<Student> students) {
+public final class ImmutableClass {
+    private final int id;
 
-    // конструктор з глибоким копіюванням полів
+    // щоб блас був повністю імутабельним то клас Student має також бути імутабельним
+    private final Student student;
+    private final List<Student> students;
+
     public ImmutableClass(int id, Student student, List<Student> students) {
         this.id = id;
-        this.student = new Student(student.getAge(), student.getName()); // Create a new Student object to ensure immutability
+        this.student = new Student(student.getAge(), student.getName());
         this.students = List.copyOf(students);
     }
 
-    // перевизначає гетер щоб зробити копію
-    @Override
-    public Student student() {
+    public int getId() {
+        return id;
+    }
+
+    public Student getStudent() {
         return new Student(student.getAge(), student.getName());
     }
 
-    // перевизначає гетер щоб зробити копію
-    @Override
-    public List<Student> students() {
-        List<Student> copyArrayList = new ArrayList<>();
-        for (Student stud : students) {
-            copyArrayList.add(new Student(stud.getAge(), stud.getName()));
-        }
-        return copyArrayList;
-    }
-
-    @Override
-    public String toString() {
-        return "ImmutableClass{" +
-                "id=" + id +
-                ", student=" + student +
-                ", students=" + students +
-                '}';
+    public List<Student> getStudents() {
+        return List.copyOf(students);
     }
 }
