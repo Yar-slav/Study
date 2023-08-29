@@ -1,18 +1,18 @@
 package com.example.singleton;
 
-public class MySingleton {
-    private static MySingleton instance;
+public class LazySingleton {
+    private static LazySingleton instance;
     private String name;
 
     // private constructor to prevent external instantiation
     // приватний конструктор для запобігання зовнішньому створенню екземплярів
-    private MySingleton(String name) {
+    private LazySingleton(String name) {
         this.name = name;
     }
 
-    public static MySingleton getInstance(String name) {
+    public static LazySingleton getInstance(String name) {
         if (instance == null) {
-            instance = new MySingleton(name);
+            instance = new LazySingleton(name);
         }
         return instance;
     }

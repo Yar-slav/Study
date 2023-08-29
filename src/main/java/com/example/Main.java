@@ -8,11 +8,14 @@ import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-       Integer i = 5;
-       Short s = 3;
-        int i1 = Runtime.getRuntime().availableProcessors() - 1;
-        System.out.println(i1);
+        try {
+            int result = 10 / 0; // Викликаємо ArithmeticException (ділення на нуль)
+            System.out.println("Result: " + result); // Цей код не буде виконано
+        } finally {
+            int result = 10 / 0;
+            System.out.println("Inside finally block");
+        }
 
-
+        System.out.println("Outside try-finally"); // Цей код буде виконано після блоку try-finally
     }
 }

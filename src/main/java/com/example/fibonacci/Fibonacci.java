@@ -2,7 +2,10 @@ package com.example.fibonacci;
 
 public class Fibonacci {
     public static void main(String[] args) {
-        int size = 30;
+        getSize(30);
+    }
+
+    public static long getSize(long size) {
         long previous = 0;
         long current = 1;
 
@@ -12,5 +15,6 @@ public class Fibonacci {
             previous = current;
             current = next;
         }
+        return previous;
     }
 }
