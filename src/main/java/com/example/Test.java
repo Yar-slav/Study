@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,18 +12,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Test {
-    public static void recursiveFunction() {
-        // Викликаємо рекурсивну функцію без закінчення
-        recursiveFunction();
-    }
-
     public static void main(String[] args) {
-        try {
-            recursiveFunction();
-        } catch (StackOverflowError e) {
-            System.out.println("Отримано StackOverflowError!");
-            e.printStackTrace();
+        List<String> names = new ArrayList<>();
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Charlie");
+
+        Iterator<String> iterator = names.iterator();
+        while (iterator.hasNext()) {
+            String name = iterator.next();
+            if (name.equals("Bob")) {
+                iterator.remove(); // Видаляємо елемент через ітератор
+            }
         }
+
+        System.out.println(names); // Вивід: [Alice, Charlie]
     }
 }
 
@@ -32,3 +37,4 @@ class Stud {
     int id;
     String name;
 }
+
